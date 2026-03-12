@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mini Sistema Contable</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<header>
+
+<img src="logo.png" class="logo">
+
+<h1>Mini Sistema Contable</h1>
+
+</header>
+
+
+<!-- MENU DE PESTAÑAS -->
+
+<nav class="tabs">
+
+<button class="tab-btn active" data-tab="registrar">Registrar</button>
+
+<button class="tab-btn" data-tab="dashboard">Dashboard</button>
+
+<button class="tab-btn" data-tab="caja">Caja</button>
+
+<button class="tab-btn" data-tab="pl">Pérdidas y Ganancias</button>
+
+<button class="tab-btn" data-tab="balance">Balance</button>
+
+<button class="tab-btn" data-tab="flujo">Flujo de Caja</button>
+
+</nav>
+
+
+
+<!-- ================= REGISTRAR ================= -->
+
+<section class="tab active" id="registrar">
+
+<h2>Registrar Movimiento</h2>
+
+<form id="movementForm">
+
+<div class="form-group">
+<label>Fecha</label>
+<input type="date" id="date" required>
+</div>
+
+<div class="form-group">
+<label>Tipo</label>
+<select id="type">
+
+<option value="income">Ingreso</option>
+<option value="expense">Gasto</option>
+<option value="asset">Compra de activo</option>
+<option value="debtPayment">Pago de deuda</option>
+<option value="loan">Préstamo recibido</option>
+<option value="investment">Inversión del dueño</option>
+
+</select>
+</div>
+
+<div class="form-group">
+<label>Concepto</label>
+<input type="text" id="concept">
+</div>
+
+<div class="form-group">
+<label>Categoría</label>
+<input type="text" id="category">
+</div>
+
+<div class="form-group">
+<label>Monto</label>
+<input type="number" id="amount">
+</div>
+
+<div class="form-group">
+<label>Método de pago</label>
+
+<select id="payment">
+<option value="cash">Efectivo</option>
+<option value="bank">Banco</option>
+<option value="card">Tarjeta</option>
+</select>
+
+</div>
+
+<button type="submit">Guardar Movimiento</button>
+
+</form>
+
+</section>
+
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="tab" id="dashboard">
+
+<h2>Resumen del Negocio</h2>
+
+<div class="dashboard">
+
+<div class="card">
+<h3>Dinero en caja</h3>
+<p id="cash">0</p>
+</div>
+
+<div class="card">
+<h3>Ventas</h3>
+<p id="sales">0</p>
+</div>
+
+<div class="card">
+<h3>Gastos</h3>
+<p id="expenses">0</p>
+</div>
+
+<div class="card">
+<h3>Beneficio</h3>
+<p id="profit">0</p>
+</div>
+
+<div class="card">
+<h3>Deudas</h3>
+<p id="debts">0</p>
+</div>
+
+<div class="card">
+<h3>Activos</h3>
+<p id="assets">0</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= CAJA ================= -->
+
+<section class="tab" id="caja">
+
+<h2>Registro de Caja</h2>
+
+<div class="filters">
+
+<input type="date" id="filterDate">
+
+<select id="filterType">
+
+<option value="all">Todos</option>
+<option value="income">Ingresos</option>
+<option value="expense">Gastos</option>
+
+</select>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Fecha</th>
+<th>Tipo</th>
+<th>Concepto</th>
+<th>Categoría</th>
+<th>Monto</th>
+<th>Saldo</th>
+</tr>
+
+</thead>
+
+<tbody id="movementTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+
+
+<!-- ================= P&L ================= -->
+
+<section class="tab" id="pl">
+
+<h2>Estado de Pérdidas y Ganancias</h2>
+
+<div class="report-grid">
+
+<div>
+<h3>Ingresos</h3>
+<p id="plIncome">0</p>
+</div>
+
+<div>
+<h3>Costes</h3>
+<p id="plCost">0</p>
+</div>
+
+<div>
+<h3>Gastos</h3>
+<p id="plExpenses">0</p>
+</div>
+
+<div>
+<h3>Resultado</h3>
+<p id="plResult">0</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= BALANCE ================= -->
+
+<section class="tab" id="balance">
+
+<h2>Balance de Situación</h2>
+
+<div class="balance">
+
+<div class="balance-column">
+
+<h3>Activos</h3>
+
+<p>Caja: <span id="assetCash">0</span></p>
+<p>Inventario: <span id="assetInventory">0</span></p>
+<p>Equipos: <span id="assetEquipment">0</span></p>
+
+<p class="total">Total activos: <span id="totalAssets">0</span></p>
+
+</div>
+
+<div class="balance-column">
+
+<h3>Pasivos</h3>
+
+<p>Préstamos: <span id="liabilitiesLoans">0</span></p>
+<p>Proveedores: <span id="liabilitiesSuppliers">0</span></p>
+
+<p class="total">Total pasivos: <span id="totalLiabilities">0</span></p>
+
+</div>
+
+<div class="balance-column">
+
+<h3>Patrimonio</h3>
+
+<p>Capital: <span id="equityCapital">0</span></p>
+<p>Ganancias: <span id="equityProfit">0</span></p>
+
+<p class="total">Total patrimonio: <span id="totalEquity">0</span></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FLUJO DE CAJA ================= -->
+
+<section class="tab" id="flujo">
+
+<h2>Flujo de Caja</h2>
+
+<div class="cashflow">
+
+<p>Dinero inicial: <span id="cfStart">0</span></p>
+
+<p>Entradas: <span id="cfIn">0</span></p>
+
+<p>Salidas: <span id="cfOut">0</span></p>
+
+<p class="total">Dinero final: <span id="cfEnd">0</span></p>
+
+</div>
+
+<br>
+
+<button id="exportExcel">Descargar hoja de cálculo</button>
+
+</section>
+
+</body>
+</html>
+
